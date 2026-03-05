@@ -15,7 +15,7 @@
   --text-light: #6b7280;
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
 body {
   font-family: 'Inter', sans-serif;
@@ -23,6 +23,7 @@ body {
   background: var(--white);
   line-height: 1.7;
   overflow-x: hidden;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5 {
@@ -299,11 +300,15 @@ ul { list-style: none; }
 
 .hero-grid {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image:
     linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+  pointer-events: none;
 }
 
 .hero .container {
@@ -314,6 +319,7 @@ ul { list-style: none; }
 
 .hero-content {
   max-width: 720px;
+  width: 100%;
 }
 
 .hero-badge {
@@ -993,7 +999,7 @@ section {
   .nav-links {
     display: none;
     position: absolute;
-    top: 76px;
+    top: 64px;
     left: 0;
     right: 0;
     background: var(--navy);
@@ -1001,26 +1007,100 @@ section {
     padding: 24px;
     gap: 16px;
     border-top: 1px solid rgba(201, 168, 76, 0.15);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
   }
 
   .nav-links.open { display: flex; }
 
   .hamburger { display: flex; }
 
-  .hero h2 { font-size: 2.2rem; }
-  .hero-stats { gap: 32px; flex-wrap: wrap; }
-  .hero-stat h3 { font-size: 1.6rem; }
+  /* Compact navbar on mobile */
+  .navbar .container { height: 64px; }
+  .nav-brand img { width: 36px; height: 36px; }
+  .nav-brand { gap: 10px; }
+  .nav-brand-text h1 { font-size: 1.05rem; }
+  .nav-brand-text span { display: none; }
+
+  /* Hero mobile fixes */
+  .hero { min-height: auto; padding: 100px 0 60px; }
+  .hero .container { padding-top: 0; }
+  .hero h2 { font-size: 2rem; }
+  .hero-tagline { font-size: 1rem; margin-bottom: 20px; }
+  .hero-desc { font-size: 0.9rem; margin-bottom: 28px; }
+
+  .hero-badge {
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+  .hero-badge p {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-stats {
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 28px;
+  }
+  .hero-stat h3 { font-size: 1.5rem; }
+  .hero-stat p { font-size: 0.7rem; }
+
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { text-align: center; justify-content: center; }
+
+  /* Section spacing */
+  section { padding: 64px 0; }
+  .section-title { font-size: 1.9rem; }
+  .section-subtitle { font-size: 0.95rem; }
 
   .team-grid { grid-template-columns: 1fr; max-width: 420px; }
-  .locations-flex { gap: 32px; }
+  .locations-flex { gap: 24px; }
+  .location-item p { font-size: 0.8rem; }
 
-  .disclaimer-header, .disclaimer-body { padding: 24px; }
+  /* Disclaimer mobile */
+  .disclaimer-overlay { padding: 16px; }
+  .disclaimer-header { padding: 20px; gap: 14px; }
+  .disclaimer-header img { width: 44px; height: 44px; }
+  .disclaimer-header h2 { font-size: 1.15rem; }
+  .disclaimer-body { padding: 20px; }
+  .disclaimer-body p { font-size: 0.85rem; }
+  .disclaimer-body ul li { font-size: 0.85rem; }
+  .disclaimer-btn { font-size: 0.95rem; padding: 14px; }
+
+  /* Contact form card */
+  .consult-form-card { padding: 24px; }
+
+  /* Footer mobile */
+  .footer-links { gap: 16px; flex-wrap: wrap; }
+  .footer-bottom { flex-direction: column; }
 }
 
 @media (max-width: 480px) {
-  .hero h2 { font-size: 1.8rem; }
-  .hero-desc { font-size: 0.95rem; }
-  .btn { padding: 14px 24px; font-size: 0.85rem; }
-  section { padding: 72px 0; }
-  .section-title { font-size: 1.8rem; }
+  .hero h2 { font-size: 1.6rem; }
+  .hero-desc { font-size: 0.85rem; }
+  .btn { padding: 13px 20px; font-size: 0.82rem; }
+  section { padding: 56px 0; }
+  .section-title { font-size: 1.6rem; }
+  .section-label { font-size: 0.7rem; }
+
+  .hero-badge p { font-size: 0.58rem; }
+  .hero-badge span { width: 6px; height: 6px; }
+
+  .hero-stats { gap: 20px; }
+  .hero-stat h3 { font-size: 1.3rem; }
+
+  .practice-card-header { padding: 24px 20px; }
+  .practice-card-body { padding: 20px; }
+
+  .value-card { padding: 24px; }
+
+  .team-card-top { padding: 28px 20px; }
+  .team-card-bottom { padding: 20px; }
+
+  .contact-block p, .contact-block a { padding-left: 0; margin-top: 8px; }
+  .contact-block h4 { font-size: 0.9rem; }
+
+  .locations-strip { padding: 36px 0; }
+  .locations-flex { gap: 16px; }
 }
