@@ -66,11 +66,7 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#home" class="nav-brand">
-      <img src="images/logo.png" alt="Vidhi Sarthi">
-      <div class="nav-brand-text">
-        <span class="nav-brand-name">Vidhi Sarthi</span>
-        <span class="nav-brand-tagline">Advocates &amp; Legal Consultants</span>
-      </div>
+      <span class="nav-brand-name">Vidhi Sarthi</span>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#home" class="nav-link" data-scramble>Home</a>
@@ -78,6 +74,7 @@
       <a href="#practice" class="nav-link" data-scramble>Practice Areas</a>
       <a href="#team" class="nav-link" data-scramble>Team</a>
       <a href="blog/index.html" class="nav-link" data-scramble>Insights</a>
+      <a href="#careers" class="nav-link" data-scramble>Careers</a>
       <a href="#contact" class="nav-link nav-cta magnetic">Request Consultation</a>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -96,9 +93,8 @@
   </div>
   <div class="container hero-container">
     <div class="hero-content">
-      <div class="hero-eyebrow" data-gsap="hero">
-        <span class="eyebrow-line"></span>
-        <span class="eyebrow-text">Est. Mumbai, India</span>
+      <div class="hero-logo-wrap" data-gsap="hero">
+        <img src="images/logo.png" alt="Vidhi Sarthi" class="hero-logo">
       </div>
       <h1 class="hero-title" data-gsap="hero">
         <span class="hero-title-line"><span class="text-reveal">Structured,</span></span>
@@ -276,12 +272,43 @@
   </div>
 </section>
 
+<!-- ===== CAREERS ===== -->
+<section class="careers" id="careers">
+  <div class="container">
+    <div class="section-tag gsap-reveal"><span class="tag-num">04</span><span class="tag-line"></span><span class="tag-text">Careers</span></div>
+    <h2 class="section-heading gsap-reveal split-text">Join Our Team</h2>
+    <div class="careers-grid">
+      <div class="careers-text gsap-reveal">
+        <p class="careers-lead">We are always looking for talented legal professionals who share our commitment to excellence, ethics, and structured legal practice.</p>
+        <p>If you are a motivated advocate or law graduate seeking to build a career in corporate law, indirect taxation, or litigation, we would like to hear from you.</p>
+      </div>
+      <div class="careers-card gsap-reveal">
+        <h3>What We Look For</h3>
+        <ul>
+          <li>Strong academic foundation in law</li>
+          <li>Analytical mindset and attention to detail</li>
+          <li>Excellent written and oral communication</li>
+          <li>Commitment to ethical practice</li>
+          <li>Willingness to learn and grow</li>
+        </ul>
+        <div class="careers-cta">
+          <p class="careers-cta-text">Send your CV and a brief cover letter to:</p>
+          <a href="mailto:careers@vidhisarthi.com" class="btn-gold magnetic">
+            <span data-scramble>careers@vidhisarthi.com</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section class="contact" id="contact">
   <div class="contact-bg" aria-hidden="true"></div>
   <div class="container">
     <div class="contact-header">
-      <div class="section-tag gsap-reveal"><span class="tag-num">04</span><span class="tag-line"></span><span class="tag-text">Contact</span></div>
+      <div class="section-tag gsap-reveal"><span class="tag-num">05</span><span class="tag-line"></span><span class="tag-text">Contact</span></div>
       <h2 class="section-heading section-heading--light gsap-reveal split-text">Request a Consultation</h2>
       <p class="contact-sub gsap-reveal">Submit your details and our team will respond within 24 hours.</p>
     </div>
@@ -311,7 +338,7 @@
       <div class="contact-details gsap-reveal">
         <div class="contact-detail"><span class="detail-label">Email</span><a href="mailto:assist@vidhisarthi.com">assist@vidhisarthi.com</a></div>
         <div class="contact-detail"><span class="detail-label">Office Hours</span><p>Monday &mdash; Friday<br>10:00 AM to 7:00 PM</p></div>
-        <div class="contact-detail"><span class="detail-label">Headquarters</span><p>Mumbai, Maharashtra</p></div>
+        <div class="contact-detail"><span class="detail-label">Head Office</span><p>Mumbai, Maharashtra</p></div>
         <div class="contact-detail"><span class="detail-label">Offices</span><div class="detail-offices"><span>Mumbai</span><span>Pune</span><span>Delhi</span><span>Bhopal</span><span>Nagpur</span></div></div>
       </div>
     </div>
@@ -323,7 +350,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand"><img src="images/logo.png" alt="" class="footer-logo"><div><h3>Vidhi Sarthi</h3><p>Advocates &amp; Legal Consultants</p></div></div>
-      <nav class="footer-nav"><a href="#home" data-scramble>Home</a><a href="#about" data-scramble>About</a><a href="#practice" data-scramble>Practice Areas</a><a href="#team" data-scramble>Team</a><a href="blog/index.html" data-scramble>Insights</a><a href="#contact" data-scramble>Contact</a></nav>
+      <nav class="footer-nav"><a href="#home" data-scramble>Home</a><a href="#about" data-scramble>About</a><a href="#practice" data-scramble>Practice Areas</a><a href="#team" data-scramble>Team</a><a href="#careers" data-scramble>Careers</a><a href="blog/index.html" data-scramble>Insights</a><a href="#contact" data-scramble>Contact</a></nav>
     </div>
     <div class="footer-line"></div>
     <div class="footer-bottom"><p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p><p>This website is for informational purposes only and does not constitute legal advice.</p></div>
@@ -418,7 +445,7 @@ document.getElementById('disclaimerBtn').addEventListener('click', acceptDisclai
 function startSite() {
   var tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-  tl.from('.hero-eyebrow', { opacity: 0, y: 30, duration: 0.8 })
+  tl.from('.hero-logo-wrap', { opacity: 0, scale: 0.8, duration: 0.8 })
     .from('.text-reveal', { y: '120%', duration: 1.2, stagger: 0.1 }, '-=0.4')
     .from('.hero-divider span', { width: 0, duration: 1, ease: 'power2.out' }, '-=0.6')
     .from('.hero-desc', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5')
@@ -437,6 +464,7 @@ function startSite() {
 
   initScramble();
   initScrollAnimations();
+  initCustomCursor();
 }
 
 // ========== TEXT SCRAMBLE ==========
@@ -605,7 +633,13 @@ document.querySelectorAll('.nav-links a').forEach(function(a) {
 });
 
 // ========== CUSTOM CURSOR + MAGNETIC (desktop) ==========
-if (!isTouch) {
+// NOTE: Custom cursor is only activated AFTER disclaimer is accepted (inside startSite)
+// so the default cursor remains visible during preloader and disclaimer.
+var cursorReady = false;
+function initCustomCursor() {
+  if (isTouch || cursorReady) return;
+  cursorReady = true;
+
   var cursor = document.getElementById('cursor');
   var ring = cursor.querySelector('.cursor-ring');
   var coords = document.getElementById('cursorCoords');

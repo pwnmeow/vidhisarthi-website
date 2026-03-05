@@ -179,6 +179,9 @@ button { font-family: inherit; cursor: pointer; }
   transition: all 0.4s var(--ease);
 }
 .disclaimer-btn:hover { background: var(--gold); color: var(--bg); }
+.disclaimer-overlay, .disclaimer-overlay * { cursor: auto !important; }
+.disclaimer-btn { cursor: pointer !important; }
+.preloader, .preloader * { cursor: auto !important; }
 
 /* ===== NAVBAR ===== */
 .navbar {
@@ -196,15 +199,10 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; align-items: center; justify-content: space-between;
   height: 80px; max-width: 1280px; margin: 0 auto;
 }
-.nav-brand { display: flex; align-items: center; gap: 14px; }
-.nav-brand img { width: 42px; height: 42px; border-radius: 50%; }
+.nav-brand { display: flex; align-items: center; }
 .nav-brand-name {
-  font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
-  color: var(--white); letter-spacing: 1.5px; display: block;
-}
-.nav-brand-tagline {
-  font-size: 0.62rem; color: var(--text-dim); letter-spacing: 2px;
-  text-transform: uppercase; display: block;
+  font-family: var(--serif); font-size: 1.65rem; font-weight: 400;
+  color: var(--white); letter-spacing: 2px; text-transform: uppercase;
 }
 .nav-links { display: flex; align-items: center; gap: 36px; }
 .nav-link {
@@ -272,11 +270,10 @@ button { font-family: inherit; cursor: pointer; }
   padding-top: 120px; padding-bottom: clamp(60px, 10vh, 120px);
 }
 .hero-content { flex: 1; max-width: 860px; }
-.hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
-.eyebrow-line { width: 48px; height: 1px; background: var(--gold); display: block; }
-.eyebrow-text {
-  font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
-  color: var(--gold); font-weight: 500;
+.hero-logo-wrap { margin-bottom: 36px; }
+.hero-logo {
+  width: 80px; height: 80px; border-radius: 50%;
+  border: 1px solid var(--gold-border);
 }
 
 /* Big hero type */
@@ -581,6 +578,38 @@ section {
   content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 1px; background: var(--gold);
 }
 
+/* ===== CAREERS ===== */
+.careers {
+  background: var(--bg);
+  border-top: 1px solid var(--gold-border);
+}
+.careers-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px;
+}
+.careers-lead {
+  font-family: var(--serif); font-size: 1.3rem; color: var(--text);
+  line-height: 1.75; margin-bottom: 20px; font-weight: 300;
+}
+.careers-text p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; }
+.careers-card {
+  background: var(--bg-elevated); border: 1px solid var(--gold-border);
+  padding: 44px; transition: border-color 0.5s var(--ease-out);
+}
+.careers-card:hover { border-color: var(--gold); }
+.careers-card h3 {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+  color: var(--gold); margin-bottom: 28px; letter-spacing: 1px;
+}
+.careers-card ul li {
+  position: relative; padding-left: 20px; margin-bottom: 10px;
+  font-size: 0.88rem; color: var(--text-muted);
+}
+.careers-card ul li::before {
+  content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--gold);
+}
+.careers-cta { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--gold-border); }
+.careers-cta-text { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 16px; }
+
 /* ===== CONTACT — Full viewport ===== */
 .contact {
   position: relative;
@@ -722,6 +751,7 @@ section {
   }
   .practice-card:last-child { border-bottom: none; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .careers-grid { grid-template-columns: 1fr; gap: 48px; }
   .about, .team, .contact { min-height: auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   .values-row { grid-template-columns: 1fr; gap: 32px; }
@@ -747,9 +777,7 @@ section {
   .nav-links .nav-cta { font-family: var(--sans); font-size: 0.78rem; margin-top: 20px; }
   .hamburger { display: flex; z-index: 1001; }
   .nav-inner { height: 64px; }
-  .nav-brand img { width: 34px; height: 34px; }
-  .nav-brand-name { font-size: 1.1rem; }
-  .nav-brand-tagline { display: none; }
+  .nav-brand-name { font-size: 1.2rem; letter-spacing: 1.5px; }
 
   .hero { min-height: 100vh; min-height: 100dvh; }
   .hero-container { flex-direction: column; padding-top: 100px; gap: 40px; }
@@ -764,7 +792,8 @@ section {
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn-gold { justify-content: center; }
 
-  .hero-eyebrow { margin-bottom: 28px; }
+  .hero-logo { width: 60px; height: 60px; }
+  .hero-logo-wrap { margin-bottom: 24px; }
   .hero-divider { margin: 28px 0; }
   .hero-desc { margin-bottom: 32px; }
 
@@ -792,6 +821,7 @@ section {
   section { padding: 80px 0; }
   .section-heading { font-size: 1.85rem; }
   .approach-card { padding: 28px; }
+  .careers-card { padding: 28px; }
   .contact-form-wrap { padding: 28px; }
   .practice-card { padding: 32px 24px; }
   .disclaimer-title { font-size: 1.7rem; letter-spacing: 2px; }
