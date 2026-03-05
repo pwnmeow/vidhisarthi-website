@@ -8,143 +8,204 @@
   <link rel="icon" href="images/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true"></div>
+
 <!-- ===== DISCLAIMER MODAL ===== -->
 <div class="disclaimer-overlay" id="disclaimer">
-  <div class="disclaimer-box">
-    <div class="disclaimer-header">
-      <img src="images/logo.png" alt="Vidhi Sarthi Logo">
-      <div>
-        <h2>Vidhi Sarthi</h2>
-        <p>Corporate &bull; Indirect Tax &bull; Litigation</p>
-      </div>
+  <div class="disclaimer-inner">
+    <div class="disclaimer-logo-wrap">
+      <img src="images/logo.png" alt="Vidhi Sarthi" class="disclaimer-logo">
+      <div class="disclaimer-gold-line"></div>
     </div>
-    <div class="disclaimer-body">
-      <h3>Disclaimer</h3>
-      <p>As per the rules of the Bar Council of India, law firms and advocates are not permitted to solicit work or advertise. By clicking "I Agree", the user acknowledges that:</p>
+    <h2 class="disclaimer-title">Vidhi Sarthi</h2>
+    <p class="disclaimer-sub">Corporate &bull; Indirect Tax &bull; Litigation</p>
+    <div class="disclaimer-content">
+      <p class="disclaimer-heading">Disclaimer</p>
+      <p>As per the rules of the Bar Council of India, law firms and advocates are not permitted to solicit work or advertise. By proceeding, you acknowledge that:</p>
       <ul>
-        <li>There has been no solicitation, advertisement, or inducement by the firm.</li>
-        <li>The website is for informational purposes only.</li>
-        <li>No lawyer&ndash;client relationship is created by accessing this website.</li>
+        <li>There has been no solicitation, advertisement, or inducement by the firm</li>
+        <li>This website is for informational purposes only</li>
+        <li>No lawyer&ndash;client relationship is created by accessing this website</li>
       </ul>
     </div>
-    <button class="disclaimer-btn" onclick="acceptDisclaimer()">I Agree &amp; Enter</button>
+    <button class="disclaimer-btn" onclick="acceptDisclaimer()">
+      <span>I Agree &amp; Enter</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </div>
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
-  <div class="container">
+  <div class="nav-inner">
     <a href="#home" class="nav-brand">
       <img src="images/logo.png" alt="Vidhi Sarthi">
       <div class="nav-brand-text">
-        <h1>Vidhi Sarthi</h1>
-        <span>Corporate &bull; Indirect Tax &bull; Litigation</span>
+        <span class="nav-brand-name">Vidhi Sarthi</span>
+        <span class="nav-brand-tagline">Advocates &amp; Legal Consultants</span>
       </div>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#practice">Practice Areas</a>
-      <a href="#team">Team</a>
-      <a href="blog/index.html">Blog</a>
-      <a href="#contact" class="nav-cta">Consult</a>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#practice" class="nav-link">Practice Areas</a>
+      <a href="#team" class="nav-link">Team</a>
+      <a href="blog/index.html" class="nav-link">Insights</a>
+      <a href="#contact" class="nav-link nav-cta">Request Consultation</a>
     </div>
-    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
       <span></span>
       <span></span>
-      <span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-grid"></div>
-  <div class="container">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-gradient"></div>
+    <div class="hero-lines">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="container hero-container">
     <div class="hero-content">
-      <div class="hero-badge">
-        <span></span>
-        <p>Mumbai &bull; Pune &bull; Bhopal &bull; Delhi &bull; Nagpur</p>
+      <div class="hero-eyebrow reveal" data-delay="0">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Est. Mumbai, India</span>
       </div>
-      <h2>Structured, Strategic &amp; <em>Ethical</em> Legal Solutions</h2>
-      <p class="hero-tagline">Corporate &bull; Indirect Tax &bull; Litigation</p>
-      <p class="hero-desc">We assist individuals, businesses, and institutions with precise legal advice, risk-oriented structuring, and effective dispute resolution. Practical, solution-oriented counsel backed by strong drafting and court representation.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Request Consultation &#8594;</a>
-        <a href="#practice" class="btn btn-outline">Our Practice Areas</a>
+      <h1 class="hero-title">
+        <span class="hero-title-line reveal" data-delay="1">Structured,</span>
+        <span class="hero-title-line reveal" data-delay="2">Strategic &amp;</span>
+        <span class="hero-title-line hero-title-accent reveal" data-delay="3">Ethical</span>
+        <span class="hero-title-line reveal" data-delay="4">Legal Solutions.</span>
+      </h1>
+      <div class="hero-divider reveal" data-delay="5"><span></span></div>
+      <p class="hero-desc reveal" data-delay="5">Precise legal advice, risk-oriented structuring, and effective dispute resolution for individuals, businesses, and institutions across India.</p>
+      <div class="hero-actions reveal" data-delay="6">
+        <a href="#contact" class="btn-gold">
+          <span>Request Consultation</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="#practice" class="btn-ghost">Explore Practice Areas</a>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <h3>5</h3>
-          <p>Offices Across India</p>
+    </div>
+    <div class="hero-aside">
+      <div class="hero-offices reveal" data-delay="7">
+        <span class="offices-label">Our Offices</span>
+        <div class="offices-list">
+          <span>Mumbai</span>
+          <span>Pune</span>
+          <span>Delhi</span>
+          <span>Bhopal</span>
+          <span>Nagpur</span>
         </div>
-        <div class="hero-stat">
-          <h3>3</h3>
-          <p>Core Practice Areas</p>
-        </div>
-        <div class="hero-stat">
-          <h3>2</h3>
-          <p>Founding Partners</p>
-        </div>
+      </div>
+      <div class="hero-scroll-hint reveal" data-delay="8">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Corporate Law</span><span class="marquee-dot">&bull;</span>
+    <span>Indirect Taxation</span><span class="marquee-dot">&bull;</span>
+    <span>GST Advisory</span><span class="marquee-dot">&bull;</span>
+    <span>Commercial Litigation</span><span class="marquee-dot">&bull;</span>
+    <span>Data Protection</span><span class="marquee-dot">&bull;</span>
+    <span>Dispute Resolution</span><span class="marquee-dot">&bull;</span>
+    <span>Corporate Compliance</span><span class="marquee-dot">&bull;</span>
+    <span>Customs Law</span><span class="marquee-dot">&bull;</span>
+    <span>Corporate Law</span><span class="marquee-dot">&bull;</span>
+    <span>Indirect Taxation</span><span class="marquee-dot">&bull;</span>
+    <span>GST Advisory</span><span class="marquee-dot">&bull;</span>
+    <span>Commercial Litigation</span><span class="marquee-dot">&bull;</span>
+    <span>Data Protection</span><span class="marquee-dot">&bull;</span>
+    <span>Dispute Resolution</span><span class="marquee-dot">&bull;</span>
+    <span>Corporate Compliance</span><span class="marquee-dot">&bull;</span>
+    <span>Customs Law</span><span class="marquee-dot">&bull;</span>
+  </div>
+</div>
+
 <!-- ===== ABOUT ===== -->
 <section class="about" id="about">
   <div class="container">
-    <div class="section-label">About The Firm</div>
-    <h2 class="section-title fade-up">Delivering Reliable &amp; Legally<br>Sound Solutions</h2>
-    <p class="section-subtitle fade-up">Established with the objective of delivering dependable legal solutions across advisory, transactional, and litigation matters.</p>
-
+    <div class="about-header">
+      <div class="section-tag fade-up">
+        <span class="tag-num">01</span>
+        <span class="tag-line"></span>
+        <span class="tag-text">About The Firm</span>
+      </div>
+      <h2 class="section-heading fade-up">Delivering Reliable &amp;<br>Legally Sound Solutions</h2>
+    </div>
     <div class="about-grid">
-      <div class="about-text fade-up">
-        <p><strong>Vidhi Sarthi</strong> is a partnership law firm based in Mumbai, Pune, Bhopal, Delhi, and Nagpur. The firm follows a structured approach to legal problem-solving, combining statutory interpretation, judicial precedents, and commercial practicality.</p>
-        <p>We believe in clear communication, ethical practice, and long-term professional relationships. Our team provides practical and solution-oriented advice with strong drafting and court representation, along with timely and confidential handling of matters on your behalf.</p>
-
-        <h3 style="font-size:1.15rem; color:var(--navy); margin: 32px 0 20px;">Our Approach</h3>
-        <div class="approach-list">
-          <div class="approach-item">
-            <div class="approach-num">1</div>
-            <p>Understanding client objectives and risks</p>
-          </div>
-          <div class="approach-item">
-            <div class="approach-num">2</div>
-            <p>Clear legal assessment and strategy</p>
-          </div>
-          <div class="approach-item">
-            <div class="approach-num">3</div>
-            <p>Efficient execution and follow-up</p>
-          </div>
-          <div class="approach-item">
-            <div class="approach-num">4</div>
-            <p>Transparency and accountability</p>
+      <div class="about-col-left fade-up">
+        <p class="about-lead"><strong>Vidhi Sarthi</strong> is a partnership law firm based across five cities in India, established with the objective of delivering reliable and legally sound solutions across advisory, transactional, and litigation matters.</p>
+        <p>The firm follows a structured approach to legal problem-solving, combining statutory interpretation, judicial precedents, and commercial practicality. We believe in clear communication, ethical practice, and long-term professional relationships.</p>
+      </div>
+      <div class="about-col-right fade-up">
+        <div class="approach-card">
+          <h3 class="approach-title">Our Approach</h3>
+          <div class="approach-steps">
+            <div class="approach-step">
+              <span class="step-num">01</span>
+              <div class="step-content">
+                <h4>Understand</h4>
+                <p>Client objectives, risks, and commercial context</p>
+              </div>
+            </div>
+            <div class="approach-step">
+              <span class="step-num">02</span>
+              <div class="step-content">
+                <h4>Strategize</h4>
+                <p>Clear legal assessment and tailored strategy</p>
+              </div>
+            </div>
+            <div class="approach-step">
+              <span class="step-num">03</span>
+              <div class="step-content">
+                <h4>Execute</h4>
+                <p>Efficient execution with rigorous follow-up</p>
+              </div>
+            </div>
+            <div class="approach-step">
+              <span class="step-num">04</span>
+              <div class="step-content">
+                <h4>Deliver</h4>
+                <p>Transparency, accountability, and results</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="about-values fade-up">
-        <div class="value-card">
-          <div class="icon">&#9878;</div>
-          <h4>Ethical Practice</h4>
-          <p>We uphold the highest standards of professional ethics, ensuring integrity in every engagement and counsel we provide.</p>
-        </div>
-        <div class="value-card">
-          <div class="icon">&#9881;</div>
-          <h4>Structured Approach</h4>
-          <p>Every matter is handled with a methodical framework combining statutory interpretation, precedent analysis, and commercial insight.</p>
-        </div>
-        <div class="value-card">
-          <div class="icon">&#128101;</div>
-          <h4>Client-Centric</h4>
-          <p>We prioritize understanding your unique objectives and risks to deliver tailored, practical legal solutions.</p>
-        </div>
+    </div>
+    <div class="values-row fade-up">
+      <div class="value-item">
+        <span class="value-number">I</span>
+        <h4>Ethical Practice</h4>
+        <p>Highest standards of professional integrity in every engagement</p>
+      </div>
+      <div class="value-divider"></div>
+      <div class="value-item">
+        <span class="value-number">II</span>
+        <h4>Structured Method</h4>
+        <p>Statutory interpretation, precedent analysis, and commercial insight</p>
+      </div>
+      <div class="value-divider"></div>
+      <div class="value-item">
+        <span class="value-number">III</span>
+        <h4>Client-Centric</h4>
+        <p>Tailored, practical solutions aligned with your unique objectives</p>
       </div>
     </div>
   </div>
@@ -153,64 +214,61 @@
 <!-- ===== PRACTICE AREAS ===== -->
 <section class="practice" id="practice">
   <div class="container">
-    <div class="section-label">Practice Areas</div>
-    <h2 class="section-title fade-up">Comprehensive Legal Services</h2>
-    <p class="section-subtitle fade-up">Expert counsel across corporate, taxation, and litigation matters to protect and advance your interests.</p>
-
-    <div class="practice-cards">
-      <!-- Corporate -->
-      <div class="practice-card fade-up">
-        <div class="practice-card-header">
-          <div class="icon">&#127970;</div>
-          <h3>Corporate &amp; Commercial Law</h3>
-        </div>
-        <div class="practice-card-body">
-          <p>We advise companies, startups, and businesses on a wide range of corporate and commercial matters.</p>
-          <ul>
-            <li>Company incorporation and structuring</li>
-            <li>Shareholder and joint venture agreements</li>
-            <li>Commercial contracts and vendor agreements</li>
-            <li>Corporate compliance and governance</li>
-            <li>Legal due diligence</li>
-          </ul>
-        </div>
+    <div class="section-tag fade-up">
+      <span class="tag-num">02</span>
+      <span class="tag-line"></span>
+      <span class="tag-text">Practice Areas</span>
+    </div>
+    <h2 class="section-heading fade-up">Comprehensive<br>Legal Services</h2>
+  </div>
+  <div class="practice-grid">
+    <div class="practice-card fade-up">
+      <div class="practice-card-num">01</div>
+      <div class="practice-card-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
       </div>
-
-      <!-- Indirect Tax -->
-      <div class="practice-card fade-up">
-        <div class="practice-card-header">
-          <div class="icon">&#128200;</div>
-          <h3>Indirect Taxation</h3>
-        </div>
-        <div class="practice-card-body">
-          <p>Advisory and litigation support under indirect tax laws including GST, Customs, and allied legislation.</p>
-          <ul>
-            <li>GST advisory and compliance</li>
-            <li>GST audits and investigations</li>
-            <li>Appeals before authorities and tribunals</li>
-            <li>Classification, valuation &amp; input tax credit</li>
-            <li>Customs and allied laws</li>
-          </ul>
-        </div>
+      <h3>Corporate &amp; Commercial Law</h3>
+      <p>Advising companies, startups, and businesses on a wide range of corporate and commercial matters.</p>
+      <ul>
+        <li>Company incorporation &amp; structuring</li>
+        <li>Shareholder &amp; JV agreements</li>
+        <li>Commercial contracts</li>
+        <li>Corporate compliance &amp; governance</li>
+        <li>Legal due diligence</li>
+      </ul>
+      <div class="practice-card-line"></div>
+    </div>
+    <div class="practice-card fade-up">
+      <div class="practice-card-num">02</div>
+      <div class="practice-card-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
       </div>
-
-      <!-- Litigation -->
-      <div class="practice-card fade-up">
-        <div class="practice-card-header">
-          <div class="icon">&#9878;</div>
-          <h3>Litigation &amp; Dispute Resolution</h3>
-        </div>
-        <div class="practice-card-body">
-          <p>Representation before various courts and forums in civil, commercial, and regulatory disputes.</p>
-          <ul>
-            <li>Civil and commercial suits</li>
-            <li>Corporate and contractual disputes</li>
-            <li>Tax litigation</li>
-            <li>Writ petitions</li>
-            <li>Arbitration-related proceedings</li>
-          </ul>
-        </div>
+      <h3>Indirect Taxation</h3>
+      <p>Advisory and litigation support under indirect tax laws including GST, Customs, and allied legislation.</p>
+      <ul>
+        <li>GST advisory &amp; compliance</li>
+        <li>GST audits &amp; investigations</li>
+        <li>Appeals before authorities &amp; tribunals</li>
+        <li>Classification, valuation &amp; ITC</li>
+        <li>Customs &amp; allied laws</li>
+      </ul>
+      <div class="practice-card-line"></div>
+    </div>
+    <div class="practice-card fade-up">
+      <div class="practice-card-num">03</div>
+      <div class="practice-card-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       </div>
+      <h3>Litigation &amp; Dispute Resolution</h3>
+      <p>Representation before courts and forums in civil, commercial, and regulatory disputes.</p>
+      <ul>
+        <li>Civil &amp; commercial suits</li>
+        <li>Corporate &amp; contractual disputes</li>
+        <li>Tax litigation</li>
+        <li>Writ petitions</li>
+        <li>Arbitration proceedings</li>
+      </ul>
+      <div class="practice-card-line"></div>
     </div>
   </div>
 </section>
@@ -218,19 +276,21 @@
 <!-- ===== TEAM ===== -->
 <section class="team" id="team">
   <div class="container">
-    <div class="section-label">Our Team</div>
-    <h2 class="section-title fade-up">Founding Partners</h2>
-    <p class="section-subtitle fade-up">Led by experienced legal professionals with expertise across corporate law, taxation, and litigation.</p>
-
+    <div class="section-tag fade-up">
+      <span class="tag-num">03</span>
+      <span class="tag-line"></span>
+      <span class="tag-text">Our Team</span>
+    </div>
+    <h2 class="section-heading fade-up">Founding Partners</h2>
     <div class="team-grid">
       <div class="team-card fade-up">
-        <div class="team-card-top">
-          <div class="team-avatar">HV</div>
-          <h3>Harshit Vijayvargia</h3>
-          <p class="credentials">LL.B., LL.M.</p>
+        <div class="team-monogram">
+          <span>H</span><span>V</span>
         </div>
-        <div class="team-card-bottom">
-          <h4>Areas of Practice</h4>
+        <div class="team-info">
+          <h3>Harshit Vijayvargia</h3>
+          <p class="team-cred">LL.B., LL.M.</p>
+          <div class="team-gold-line"></div>
           <ul>
             <li>Corporate Law</li>
             <li>Commercial Litigation</li>
@@ -239,15 +299,14 @@
           </ul>
         </div>
       </div>
-
       <div class="team-card fade-up">
-        <div class="team-card-top">
-          <div class="team-avatar">VD</div>
-          <h3>Vinit Dhage</h3>
-          <p class="credentials">LL.B., LL.M.</p>
+        <div class="team-monogram">
+          <span>V</span><span>D</span>
         </div>
-        <div class="team-card-bottom">
-          <h4>Areas of Practice</h4>
+        <div class="team-info">
+          <h3>Vinit Dhage</h3>
+          <p class="team-cred">LL.B., LL.M.</p>
+          <div class="team-gold-line"></div>
           <ul>
             <li>Indirect Taxation</li>
             <li>GST Litigation &amp; Advisory</li>
@@ -260,97 +319,82 @@
   </div>
 </section>
 
-<!-- ===== LOCATIONS STRIP ===== -->
-<div class="locations-strip">
+<!-- ===== CONTACT / CONSULTATION ===== -->
+<section class="contact" id="contact">
+  <div class="contact-bg" aria-hidden="true"></div>
   <div class="container">
-    <div class="locations-flex">
-      <div class="location-item">
-        <div class="dot"></div>
-        <p>Mumbai</p>
+    <div class="contact-header">
+      <div class="section-tag fade-up">
+        <span class="tag-num">04</span>
+        <span class="tag-line"></span>
+        <span class="tag-text">Contact</span>
       </div>
-      <div class="location-item">
-        <div class="dot"></div>
-        <p>Pune</p>
-      </div>
-      <div class="location-item">
-        <div class="dot"></div>
-        <p>Bhopal</p>
-      </div>
-      <div class="location-item">
-        <div class="dot"></div>
-        <p>Delhi</p>
-      </div>
-      <div class="location-item">
-        <div class="dot"></div>
-        <p>Nagpur</p>
-      </div>
+      <h2 class="section-heading section-heading--light fade-up">Request a<br>Consultation</h2>
+      <p class="contact-sub fade-up">Submit your details and our team will respond within 24 hours.</p>
     </div>
-  </div>
-</div>
-
-<!-- ===== CONSULTATION & CONTACT ===== -->
-<section class="consultation" id="contact">
-  <div class="container">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title fade-up">Request a Consultation</h2>
-    <p class="section-subtitle fade-up">Submit your details below and our team will get back to you within 24 hours.</p>
-
-    <div class="consult-grid">
-      <div class="consult-form-card fade-up">
-        <p class="form-disclaimer">Submission of this form does not create a lawyer&ndash;client relationship.</p>
+    <div class="contact-grid">
+      <div class="contact-form-wrap fade-up">
+        <p class="form-note">Submission of this form does not create a lawyer&ndash;client relationship.</p>
         <form action="https://formsubmit.co/assist@vidhisarthi.com" method="POST">
-          <!-- Formsubmit config -->
           <input type="hidden" name="_subject" value="New Consultation Request - Vidhi Sarthi">
           <input type="hidden" name="_captcha" value="true">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_next" value="">
           <input type="text" name="_honey" style="display:none">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="Name" placeholder="Your full name" required>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="Name" placeholder="Your full name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-field">
+              <label for="area">Practice Area</label>
+              <select id="area" name="Area of Interest">
+                <option value="">Select area</option>
+                <option value="Corporate &amp; Commercial Law">Corporate &amp; Commercial Law</option>
+                <option value="Indirect Taxation">Indirect Taxation</option>
+                <option value="Litigation &amp; Dispute Resolution">Litigation &amp; Dispute Resolution</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX">
-          </div>
-          <div class="form-group">
-            <label for="area">Area of Interest</label>
-            <select id="area" name="Area of Interest">
-              <option value="">Select a practice area</option>
-              <option value="Corporate &amp; Commercial Law">Corporate &amp; Commercial Law</option>
-              <option value="Indirect Taxation">Indirect Taxation</option>
-              <option value="Litigation &amp; Dispute Resolution">Litigation &amp; Dispute Resolution</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
+          <div class="form-field">
             <label for="message">Brief Description</label>
-            <textarea id="message" name="Message" placeholder="Briefly describe your legal matter..."></textarea>
+            <textarea id="message" name="Message" rows="4" placeholder="Describe your legal matter..."></textarea>
           </div>
-          <button type="submit" class="btn-submit">Submit Consultation Request</button>
+          <button type="submit" class="btn-submit">
+            <span>Submit Request</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
         </form>
       </div>
-
-      <div class="contact-info fade-up">
-        <div class="contact-block">
-          <h4><span class="icon">&#9993;</span> Email</h4>
+      <div class="contact-details fade-up">
+        <div class="contact-detail">
+          <span class="detail-label">Email</span>
           <a href="mailto:assist@vidhisarthi.com">assist@vidhisarthi.com</a>
         </div>
-        <div class="contact-block">
-          <h4><span class="icon">&#9201;</span> Office Hours</h4>
-          <p>Monday to Friday<br>10:00 AM to 7:00 PM</p>
+        <div class="contact-detail">
+          <span class="detail-label">Office Hours</span>
+          <p>Monday &mdash; Friday<br>10:00 AM to 7:00 PM</p>
         </div>
-        <div class="contact-block">
-          <h4><span class="icon">&#9873;</span> Headquarters</h4>
-          <p>Mumbai, Maharashtra, India</p>
+        <div class="contact-detail">
+          <span class="detail-label">Headquarters</span>
+          <p>Mumbai, Maharashtra</p>
         </div>
-        <div class="contact-block">
-          <h4><span class="icon">&#127758;</span> Offices</h4>
-          <p>Mumbai &bull; Pune &bull; Bhopal &bull; Delhi &bull; Nagpur</p>
+        <div class="contact-detail">
+          <span class="detail-label">Offices</span>
+          <div class="detail-offices">
+            <span>Mumbai</span><span>Pune</span><span>Delhi</span><span>Bhopal</span><span>Nagpur</span>
+          </div>
         </div>
       </div>
     </div>
@@ -362,18 +406,22 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <h3>Vidhi Sarthi</h3>
-        <p>Corporate &bull; Indirect Tax &bull; Litigation</p>
+        <img src="images/logo.png" alt="Vidhi Sarthi" class="footer-logo">
+        <div>
+          <h3>Vidhi Sarthi</h3>
+          <p>Advocates &amp; Legal Consultants</p>
+        </div>
       </div>
-      <div class="footer-links">
+      <nav class="footer-nav">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#practice">Practice Areas</a>
         <a href="#team">Team</a>
-        <a href="blog/index.html">Blog</a>
+        <a href="blog/index.html">Insights</a>
         <a href="#contact">Contact</a>
-      </div>
+      </nav>
     </div>
+    <div class="footer-line"></div>
     <div class="footer-bottom">
       <p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p>
       <p>This website is for informational purposes only and does not constitute legal advice.</p>
@@ -384,43 +432,62 @@
 <script>
 // Disclaimer
 function acceptDisclaimer() {
-  document.getElementById('disclaimer').classList.add('hidden');
+  var el = document.getElementById('disclaimer');
+  el.classList.add('closing');
+  setTimeout(function() { el.classList.add('hidden'); }, 600);
   sessionStorage.setItem('disclaimerAccepted', 'true');
 }
 if (sessionStorage.getItem('disclaimerAccepted') === 'true') {
   document.getElementById('disclaimer').classList.add('hidden');
 }
 
-// Navbar scroll
+// Navbar
+var lastScroll = 0;
 window.addEventListener('scroll', function() {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  var st = window.scrollY;
+  var nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', st > 80);
+  nav.classList.toggle('nav-hidden', st > lastScroll && st > 400);
+  lastScroll = st;
 });
 
 // Mobile nav
 function toggleNav() {
   document.getElementById('navLinks').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('active');
 }
-
-// Close mobile nav on link click
 document.querySelectorAll('.nav-links a').forEach(function(a) {
   a.addEventListener('click', function() {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
   });
 });
 
-// Fade-up on scroll
-var observer = new IntersectionObserver(function(entries) {
+// Scroll reveal
+var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      var delay = entry.target.getAttribute('data-delay');
+      var ms = delay ? parseInt(delay) * 120 : 0;
+      setTimeout(function() { entry.target.classList.add('visible'); }, ms);
+      revealObs.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-up').forEach(function(el) {
-  observer.observe(el);
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .fade-up').forEach(function(el) {
+  revealObs.observe(el);
 });
 
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
 </script>
 
 </body>
