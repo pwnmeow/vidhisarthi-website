@@ -416,6 +416,67 @@
   </div>
 </footer>
 
+<!-- ===== GUIDE CHARACTER ===== -->
+<div class="guide" id="guide" aria-hidden="true">
+  <div class="guide-speech" id="guideSpeech">
+    <p id="guideText">Welcome to Vidhi Sarthi! Let me walk you through.</p>
+    <div class="guide-speech-tail"></div>
+  </div>
+  <div class="guide-character" id="guideChar">
+    <svg viewBox="0 0 120 200" class="guide-svg">
+      <!-- Shadow -->
+      <ellipse cx="60" cy="196" rx="22" ry="4" fill="rgba(200,163,85,0.15)"/>
+      <!-- Left leg -->
+      <g class="guide-leg guide-leg-left">
+        <line x1="52" y1="135" x2="46" y2="175" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="44" cy="178" rx="8" ry="3" fill="none" stroke="#c8a355" stroke-width="2"/>
+      </g>
+      <!-- Right leg -->
+      <g class="guide-leg guide-leg-right">
+        <line x1="68" y1="135" x2="74" y2="175" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="76" cy="178" rx="8" ry="3" fill="none" stroke="#c8a355" stroke-width="2"/>
+      </g>
+      <!-- Body / Suit -->
+      <path d="M42 75 L42 138 L78 138 L78 75 Z" fill="none" stroke="#c8a355" stroke-width="2" rx="4"/>
+      <!-- Suit lapels -->
+      <path d="M52 75 L60 100 L68 75" fill="none" stroke="#c8a355" stroke-width="1.5"/>
+      <!-- Tie -->
+      <line x1="60" y1="80" x2="60" y2="110" stroke="#c8a355" stroke-width="2"/>
+      <polygon points="56,110 60,120 64,110" fill="#c8a355" opacity="0.6"/>
+      <!-- Collar -->
+      <path d="M50 72 L60 80 L70 72" fill="none" stroke="#c8a355" stroke-width="2"/>
+      <!-- Left arm -->
+      <g class="guide-arm guide-arm-left">
+        <path d="M42 80 L28 115 L32 118" fill="none" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="31" cy="119" r="4" fill="none" stroke="#c8a355" stroke-width="1.5"/>
+      </g>
+      <!-- Right arm (holding briefcase) -->
+      <g class="guide-arm guide-arm-right">
+        <path d="M78 80 L92 115 L88 118" fill="none" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="89" cy="119" r="4" fill="none" stroke="#c8a355" stroke-width="1.5"/>
+        <!-- Briefcase -->
+        <rect x="80" y="122" width="20" height="14" rx="2" fill="none" stroke="#c8a355" stroke-width="2"/>
+        <line x1="87" y1="122" x2="87" y2="119" stroke="#c8a355" stroke-width="1.5"/>
+        <line x1="93" y1="122" x2="93" y2="119" stroke="#c8a355" stroke-width="1.5"/>
+        <line x1="87" y1="119" x2="93" y2="119" stroke="#c8a355" stroke-width="1.5"/>
+      </g>
+      <!-- Head -->
+      <circle cx="60" cy="52" r="22" fill="none" stroke="#c8a355" stroke-width="2"/>
+      <!-- Hair -->
+      <path d="M38 48 Q40 28 60 30 Q80 28 82 48" fill="none" stroke="#c8a355" stroke-width="2"/>
+      <!-- Eyes -->
+      <circle cx="52" cy="50" r="2" fill="#c8a355"/>
+      <circle cx="68" cy="50" r="2" fill="#c8a355"/>
+      <!-- Smile -->
+      <path d="M52 60 Q60 67 68 60" fill="none" stroke="#c8a355" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Glasses -->
+      <circle cx="52" cy="50" r="6" fill="none" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
+      <circle cx="68" cy="50" r="6" fill="none" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
+      <line x1="58" y1="50" x2="62" y2="50" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
+    </svg>
+  </div>
+</div>
+
 <!-- ===== MOBILE STICKY CTA ===== -->
 <div class="mobile-cta" id="mobileCta">
   <a href="#contact">
@@ -596,6 +657,100 @@ if (window.innerWidth < 769) {
   var wrap = document.querySelector('.practice-scroll-wrap');
   if (wrap) wrap.style.overflowX = 'auto';
 }
+
+// --- GUIDE CHARACTER ---
+(function() {
+  var guide = document.getElementById('guide');
+  var speech = document.getElementById('guideSpeech');
+  var textEl = document.getElementById('guideText');
+  var isScrolling = false;
+  var scrollTimer;
+  var currentSection = '';
+
+  var messages = {
+    home: "Welcome to Vidhi Sarthi! Scroll down and I'll show you around.",
+    about: "Here's who we are \u2014 a partnership firm across 5 cities in India.",
+    practice: "These are our core practice areas. We cover corporate, tax, and litigation.",
+    team: "Meet the founding partners \u2014 experienced legal professionals.",
+    contact: "Ready to talk? Fill out the form and we'll get back within 24 hours!",
+    cta: "Need help? Don't hesitate to reach out to us!"
+  };
+
+  function showMessage(key) {
+    if (currentSection === key) return;
+    currentSection = key;
+    speech.classList.remove('show');
+    setTimeout(function() {
+      textEl.textContent = messages[key] || messages.home;
+      speech.classList.add('show');
+    }, 200);
+  }
+
+  function setWalking(isWalk) {
+    if (isWalk) {
+      guide.classList.add('walking');
+      guide.classList.remove('waving');
+    } else {
+      guide.classList.remove('walking');
+    }
+  }
+
+  // Show guide after hero
+  ScrollTrigger.create({
+    trigger: '.marquee-strip',
+    start: 'top 90%',
+    onEnter: function() {
+      guide.classList.add('active');
+      guide.classList.add('waving');
+      showMessage('home');
+      setTimeout(function() { guide.classList.remove('waving'); }, 2000);
+    },
+    onLeaveBack: function() {
+      guide.classList.remove('active');
+      currentSection = '';
+    }
+  });
+
+  // Section triggers
+  var sectionMap = [
+    { trigger: '#about', key: 'about' },
+    { trigger: '#practice', key: 'practice' },
+    { trigger: '.big-cta', key: 'cta' },
+    { trigger: '#team', key: 'team' },
+    { trigger: '#contact', key: 'contact' }
+  ];
+
+  sectionMap.forEach(function(s) {
+    ScrollTrigger.create({
+      trigger: s.trigger,
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onEnter: function() { showMessage(s.key); },
+      onEnterBack: function() { showMessage(s.key); }
+    });
+  });
+
+  // Walk while scrolling
+  window.addEventListener('scroll', function() {
+    if (!isScrolling) {
+      isScrolling = true;
+      setWalking(true);
+    }
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      isScrolling = false;
+      setWalking(false);
+    }, 200);
+  }, { passive: true });
+
+  // Hide at footer
+  ScrollTrigger.create({
+    trigger: '.footer',
+    start: 'top 80%',
+    onEnter: function() { guide.classList.remove('active'); },
+    onLeaveBack: function() { guide.classList.add('active'); showMessage('contact'); }
+  });
+})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 </body>
