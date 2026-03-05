@@ -16,11 +16,29 @@
 <!-- Grain -->
 <div class="grain" aria-hidden="true"></div>
 
-<!-- Cursor glow (desktop only) -->
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- Custom cursor (desktop) -->
+<div class="custom-cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="cursor-coords" id="cursorCoords">0, 0</div>
+</div>
+<div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <img src="images/logo.png" alt="" class="preloader-logo">
+    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    <div class="preloader-counter"><span id="preloaderNum">0</span>%</div>
+    <p class="preloader-text">Vidhi Sarthi</p>
+  </div>
+</div>
 
 <!-- ===== DISCLAIMER ===== -->
-<div class="disclaimer-overlay" id="disclaimer">
+<div class="disclaimer-overlay" id="disclaimer" style="display:none">
   <div class="disclaimer-inner">
     <div class="disclaimer-logo-wrap">
       <img src="images/logo.png" alt="Vidhi Sarthi" class="disclaimer-logo">
@@ -37,8 +55,8 @@
         <li>No lawyer&ndash;client relationship is created by accessing this website</li>
       </ul>
     </div>
-    <button class="disclaimer-btn magnetic" onclick="acceptDisclaimer()">
-      <span>I Agree &amp; Enter</span>
+    <button class="disclaimer-btn" id="disclaimerBtn">
+      <span data-scramble>I Agree &amp; Enter</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
   </div>
@@ -55,11 +73,11 @@
       </div>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#practice" class="nav-link">Practice Areas</a>
-      <a href="#team" class="nav-link">Team</a>
-      <a href="blog/index.html" class="nav-link">Insights</a>
+      <a href="#home" class="nav-link" data-scramble>Home</a>
+      <a href="#about" class="nav-link" data-scramble>About</a>
+      <a href="#practice" class="nav-link" data-scramble>Practice Areas</a>
+      <a href="#team" class="nav-link" data-scramble>Team</a>
+      <a href="blog/index.html" class="nav-link" data-scramble>Insights</a>
       <a href="#contact" class="nav-link nav-cta magnetic">Request Consultation</a>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -92,10 +110,10 @@
       <p class="hero-desc" data-gsap="hero">Precise legal advice, risk-oriented structuring, and effective dispute resolution for individuals, businesses, and institutions across India.</p>
       <div class="hero-actions" data-gsap="hero">
         <a href="#contact" class="btn-gold magnetic">
-          <span>Request Consultation</span>
+          <span data-scramble>Request Consultation</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
-        <a href="#practice" class="btn-ghost">Explore Practice Areas</a>
+        <a href="#practice" class="btn-ghost" data-scramble>Explore Practice Areas</a>
       </div>
     </div>
     <div class="hero-aside" data-gsap="hero">
@@ -123,7 +141,7 @@
 
 <!-- ===== MARQUEE ===== -->
 <div class="marquee-strip">
-  <div class="marquee-track">
+  <div class="marquee-track" id="marqueeTrack">
     <span>Corporate Law</span><span class="marquee-dot">&loz;</span>
     <span>Indirect Taxation</span><span class="marquee-dot">&loz;</span>
     <span>GST Advisory</span><span class="marquee-dot">&loz;</span>
@@ -150,7 +168,7 @@
       <div class="section-tag gsap-reveal">
         <span class="tag-num">01</span><span class="tag-line"></span><span class="tag-text">About The Firm</span>
       </div>
-      <h2 class="section-heading gsap-reveal">Delivering Reliable &amp;<br>Legally Sound Solutions</h2>
+      <h2 class="section-heading gsap-reveal split-text">Delivering Reliable &amp; Legally Sound Solutions</h2>
     </div>
     <div class="about-grid">
       <div class="about-col-left gsap-reveal">
@@ -161,41 +179,20 @@
         <div class="approach-card">
           <h3 class="approach-title">Our Approach</h3>
           <div class="approach-steps">
-            <div class="approach-step">
-              <span class="step-num">01</span>
-              <div class="step-content"><h4>Understand</h4><p>Client objectives, risks, and commercial context</p></div>
-            </div>
-            <div class="approach-step">
-              <span class="step-num">02</span>
-              <div class="step-content"><h4>Strategize</h4><p>Clear legal assessment and tailored strategy</p></div>
-            </div>
-            <div class="approach-step">
-              <span class="step-num">03</span>
-              <div class="step-content"><h4>Execute</h4><p>Efficient execution with rigorous follow-up</p></div>
-            </div>
-            <div class="approach-step">
-              <span class="step-num">04</span>
-              <div class="step-content"><h4>Deliver</h4><p>Transparency, accountability, and results</p></div>
-            </div>
+            <div class="approach-step"><span class="step-num">01</span><div class="step-content"><h4>Understand</h4><p>Client objectives, risks, and commercial context</p></div></div>
+            <div class="approach-step"><span class="step-num">02</span><div class="step-content"><h4>Strategize</h4><p>Clear legal assessment and tailored strategy</p></div></div>
+            <div class="approach-step"><span class="step-num">03</span><div class="step-content"><h4>Execute</h4><p>Efficient execution with rigorous follow-up</p></div></div>
+            <div class="approach-step"><span class="step-num">04</span><div class="step-content"><h4>Deliver</h4><p>Transparency, accountability, and results</p></div></div>
           </div>
         </div>
       </div>
     </div>
     <div class="values-row gsap-reveal">
-      <div class="value-item">
-        <span class="value-number">I</span><h4>Ethical Practice</h4>
-        <p>Highest standards of professional integrity in every engagement</p>
-      </div>
+      <div class="value-item"><span class="value-number">I</span><h4>Ethical Practice</h4><p>Highest standards of professional integrity in every engagement</p></div>
       <div class="value-divider"></div>
-      <div class="value-item">
-        <span class="value-number">II</span><h4>Structured Method</h4>
-        <p>Statutory interpretation, precedent analysis, and commercial insight</p>
-      </div>
+      <div class="value-item"><span class="value-number">II</span><h4>Structured Method</h4><p>Statutory interpretation, precedent analysis, and commercial insight</p></div>
       <div class="value-divider"></div>
-      <div class="value-item">
-        <span class="value-number">III</span><h4>Client-Centric</h4>
-        <p>Tailored, practical solutions aligned with your unique objectives</p>
-      </div>
+      <div class="value-item"><span class="value-number">III</span><h4>Client-Centric</h4><p>Tailored, practical solutions aligned with your unique objectives</p></div>
     </div>
   </div>
 </section>
@@ -206,69 +203,45 @@
     <div class="section-tag gsap-reveal">
       <span class="tag-num">02</span><span class="tag-line"></span><span class="tag-text">Practice Areas</span>
     </div>
-    <h2 class="section-heading gsap-reveal">Comprehensive<br>Legal Services</h2>
+    <h2 class="section-heading gsap-reveal split-text">Comprehensive Legal Services</h2>
   </div>
   <div class="practice-scroll-wrap">
     <div class="practice-grid">
-      <div class="practice-card gsap-card">
+      <div class="practice-card gsap-card" data-cursor-text="Corporate">
         <div class="practice-card-num">01</div>
-        <div class="practice-card-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
-        </div>
+        <div class="practice-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></div>
         <h3>Corporate &amp; Commercial Law</h3>
-        <p>Advising companies, startups, and businesses on a wide range of corporate and commercial matters.</p>
-        <ul>
-          <li>Company incorporation &amp; structuring</li>
-          <li>Shareholder &amp; JV agreements</li>
-          <li>Commercial contracts</li>
-          <li>Corporate compliance &amp; governance</li>
-          <li>Legal due diligence</li>
-        </ul>
+        <p>Advising companies, startups, and businesses on corporate and commercial matters.</p>
+        <ul><li>Company incorporation &amp; structuring</li><li>Shareholder &amp; JV agreements</li><li>Commercial contracts</li><li>Corporate compliance &amp; governance</li><li>Legal due diligence</li></ul>
         <div class="practice-card-line"></div>
       </div>
-      <div class="practice-card gsap-card">
+      <div class="practice-card gsap-card" data-cursor-text="Taxation">
         <div class="practice-card-num">02</div>
-        <div class="practice-card-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
-        </div>
+        <div class="practice-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg></div>
         <h3>Indirect Taxation</h3>
         <p>Advisory and litigation support under indirect tax laws including GST, Customs, and allied legislation.</p>
-        <ul>
-          <li>GST advisory &amp; compliance</li>
-          <li>GST audits &amp; investigations</li>
-          <li>Appeals before authorities &amp; tribunals</li>
-          <li>Classification, valuation &amp; ITC</li>
-          <li>Customs &amp; allied laws</li>
-        </ul>
+        <ul><li>GST advisory &amp; compliance</li><li>GST audits &amp; investigations</li><li>Appeals before authorities &amp; tribunals</li><li>Classification, valuation &amp; ITC</li><li>Customs &amp; allied laws</li></ul>
         <div class="practice-card-line"></div>
       </div>
-      <div class="practice-card gsap-card">
+      <div class="practice-card gsap-card" data-cursor-text="Litigation">
         <div class="practice-card-num">03</div>
-        <div class="practice-card-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
+        <div class="practice-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h3>Litigation &amp; Dispute Resolution</h3>
         <p>Representation before courts and forums in civil, commercial, and regulatory disputes.</p>
-        <ul>
-          <li>Civil &amp; commercial suits</li>
-          <li>Corporate &amp; contractual disputes</li>
-          <li>Tax litigation</li>
-          <li>Writ petitions</li>
-          <li>Arbitration proceedings</li>
-        </ul>
+        <ul><li>Civil &amp; commercial suits</li><li>Corporate &amp; contractual disputes</li><li>Tax litigation</li><li>Writ petitions</li><li>Arbitration proceedings</li></ul>
         <div class="practice-card-line"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== BIG CTA STRIP ===== -->
+<!-- ===== BIG CTA ===== -->
 <div class="big-cta">
   <div class="container">
     <div class="big-cta-inner">
-      <h2>Need Legal Counsel?</h2>
+      <h2 class="split-text">Need Legal Counsel?</h2>
       <a href="#contact" class="btn-gold magnetic">
-        <span>Get in Touch</span>
+        <span data-scramble>Get in Touch</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
     </div>
@@ -278,10 +251,8 @@
 <!-- ===== TEAM ===== -->
 <section class="team" id="team">
   <div class="container">
-    <div class="section-tag gsap-reveal">
-      <span class="tag-num">03</span><span class="tag-line"></span><span class="tag-text">Our Team</span>
-    </div>
-    <h2 class="section-heading gsap-reveal">Founding Partners</h2>
+    <div class="section-tag gsap-reveal"><span class="tag-num">03</span><span class="tag-line"></span><span class="tag-text">Our Team</span></div>
+    <h2 class="section-heading gsap-reveal split-text">Founding Partners</h2>
     <div class="team-grid">
       <div class="team-card gsap-reveal">
         <div class="team-monogram"><span>H</span><span>V</span></div>
@@ -289,12 +260,7 @@
           <h3>Harshit Vijayvargia</h3>
           <p class="team-cred">LL.B., LL.M.</p>
           <div class="team-gold-line"></div>
-          <ul>
-            <li>Corporate Law</li>
-            <li>Commercial Litigation</li>
-            <li>Data Protection</li>
-            <li>Advisory &amp; Drafting</li>
-          </ul>
+          <ul><li>Corporate Law</li><li>Commercial Litigation</li><li>Data Protection</li><li>Advisory &amp; Drafting</li></ul>
         </div>
       </div>
       <div class="team-card gsap-reveal">
@@ -303,12 +269,7 @@
           <h3>Vinit Dhage</h3>
           <p class="team-cred">LL.B., LL.M.</p>
           <div class="team-gold-line"></div>
-          <ul>
-            <li>Indirect Taxation</li>
-            <li>GST Litigation &amp; Advisory</li>
-            <li>Regulatory Matters</li>
-            <li>Litigation</li>
-          </ul>
+          <ul><li>Indirect Taxation</li><li>GST Litigation &amp; Advisory</li><li>Regulatory Matters</li><li>Litigation</li></ul>
         </div>
       </div>
     </div>
@@ -320,10 +281,8 @@
   <div class="contact-bg" aria-hidden="true"></div>
   <div class="container">
     <div class="contact-header">
-      <div class="section-tag gsap-reveal">
-        <span class="tag-num">04</span><span class="tag-line"></span><span class="tag-text">Contact</span>
-      </div>
-      <h2 class="section-heading section-heading--light gsap-reveal">Request a<br>Consultation</h2>
+      <div class="section-tag gsap-reveal"><span class="tag-num">04</span><span class="tag-line"></span><span class="tag-text">Contact</span></div>
+      <h2 class="section-heading section-heading--light gsap-reveal split-text">Request a Consultation</h2>
       <p class="contact-sub gsap-reveal">Submit your details and our team will respond within 24 hours.</p>
     </div>
     <div class="contact-grid">
@@ -336,60 +295,24 @@
           <input type="hidden" name="_next" value="">
           <input type="text" name="_honey" style="display:none">
           <div class="form-row">
-            <div class="form-field">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="Name" placeholder="Your full name" required>
-            </div>
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="Email" placeholder="you@example.com" required>
-            </div>
+            <div class="form-field"><label for="name">Full Name</label><input type="text" id="name" name="Name" placeholder="Your full name" required></div>
+            <div class="form-field"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="you@example.com" required></div>
           </div>
           <div class="form-row">
-            <div class="form-field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX">
-            </div>
-            <div class="form-field">
-              <label for="area">Practice Area</label>
-              <select id="area" name="Area of Interest">
-                <option value="">Select area</option>
-                <option value="Corporate &amp; Commercial Law">Corporate &amp; Commercial Law</option>
-                <option value="Indirect Taxation">Indirect Taxation</option>
-                <option value="Litigation &amp; Dispute Resolution">Litigation &amp; Dispute Resolution</option>
-                <option value="Other">Other</option>
-              </select>
+            <div class="form-field"><label for="phone">Phone</label><input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX"></div>
+            <div class="form-field"><label for="area">Practice Area</label>
+              <select id="area" name="Area of Interest"><option value="">Select area</option><option value="Corporate">Corporate &amp; Commercial Law</option><option value="Taxation">Indirect Taxation</option><option value="Litigation">Litigation &amp; Dispute Resolution</option><option value="Other">Other</option></select>
             </div>
           </div>
-          <div class="form-field">
-            <label for="message">Brief Description</label>
-            <textarea id="message" name="Message" rows="4" placeholder="Describe your legal matter..."></textarea>
-          </div>
-          <button type="submit" class="btn-submit magnetic">
-            <span>Submit Request</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+          <div class="form-field"><label for="message">Brief Description</label><textarea id="message" name="Message" rows="4" placeholder="Describe your legal matter..."></textarea></div>
+          <button type="submit" class="btn-submit magnetic"><span data-scramble>Submit Request</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </form>
       </div>
       <div class="contact-details gsap-reveal">
-        <div class="contact-detail">
-          <span class="detail-label">Email</span>
-          <a href="mailto:assist@vidhisarthi.com">assist@vidhisarthi.com</a>
-        </div>
-        <div class="contact-detail">
-          <span class="detail-label">Office Hours</span>
-          <p>Monday &mdash; Friday<br>10:00 AM to 7:00 PM</p>
-        </div>
-        <div class="contact-detail">
-          <span class="detail-label">Headquarters</span>
-          <p>Mumbai, Maharashtra</p>
-        </div>
-        <div class="contact-detail">
-          <span class="detail-label">Offices</span>
-          <div class="detail-offices">
-            <span>Mumbai</span><span>Pune</span><span>Delhi</span><span>Bhopal</span><span>Nagpur</span>
-          </div>
-        </div>
+        <div class="contact-detail"><span class="detail-label">Email</span><a href="mailto:assist@vidhisarthi.com">assist@vidhisarthi.com</a></div>
+        <div class="contact-detail"><span class="detail-label">Office Hours</span><p>Monday &mdash; Friday<br>10:00 AM to 7:00 PM</p></div>
+        <div class="contact-detail"><span class="detail-label">Headquarters</span><p>Mumbai, Maharashtra</p></div>
+        <div class="contact-detail"><span class="detail-label">Offices</span><div class="detail-offices"><span>Mumbai</span><span>Pune</span><span>Delhi</span><span>Bhopal</span><span>Nagpur</span></div></div>
       </div>
     </div>
   </div>
@@ -399,148 +322,137 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="" class="footer-logo">
-        <div><h3>Vidhi Sarthi</h3><p>Advocates &amp; Legal Consultants</p></div>
-      </div>
-      <nav class="footer-nav">
-        <a href="#home">Home</a><a href="#about">About</a><a href="#practice">Practice Areas</a>
-        <a href="#team">Team</a><a href="blog/index.html">Insights</a><a href="#contact">Contact</a>
-      </nav>
+      <div class="footer-brand"><img src="images/logo.png" alt="" class="footer-logo"><div><h3>Vidhi Sarthi</h3><p>Advocates &amp; Legal Consultants</p></div></div>
+      <nav class="footer-nav"><a href="#home" data-scramble>Home</a><a href="#about" data-scramble>About</a><a href="#practice" data-scramble>Practice Areas</a><a href="#team" data-scramble>Team</a><a href="blog/index.html" data-scramble>Insights</a><a href="#contact" data-scramble>Contact</a></nav>
     </div>
     <div class="footer-line"></div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p>
-      <p>This website is for informational purposes only and does not constitute legal advice.</p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p><p>This website is for informational purposes only and does not constitute legal advice.</p></div>
   </div>
 </footer>
 
-<!-- ===== GUIDE CHARACTER ===== -->
-<div class="guide" id="guide" aria-hidden="true">
-  <div class="guide-speech" id="guideSpeech">
-    <p id="guideText">Welcome to Vidhi Sarthi! Let me walk you through.</p>
-    <div class="guide-speech-tail"></div>
-  </div>
-  <div class="guide-character" id="guideChar">
-    <svg viewBox="0 0 120 200" class="guide-svg">
-      <!-- Shadow -->
-      <ellipse cx="60" cy="196" rx="22" ry="4" fill="rgba(200,163,85,0.15)"/>
-      <!-- Left leg -->
-      <g class="guide-leg guide-leg-left">
-        <line x1="52" y1="135" x2="46" y2="175" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
-        <ellipse cx="44" cy="178" rx="8" ry="3" fill="none" stroke="#c8a355" stroke-width="2"/>
-      </g>
-      <!-- Right leg -->
-      <g class="guide-leg guide-leg-right">
-        <line x1="68" y1="135" x2="74" y2="175" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
-        <ellipse cx="76" cy="178" rx="8" ry="3" fill="none" stroke="#c8a355" stroke-width="2"/>
-      </g>
-      <!-- Body / Suit -->
-      <path d="M42 75 L42 138 L78 138 L78 75 Z" fill="none" stroke="#c8a355" stroke-width="2" rx="4"/>
-      <!-- Suit lapels -->
-      <path d="M52 75 L60 100 L68 75" fill="none" stroke="#c8a355" stroke-width="1.5"/>
-      <!-- Tie -->
-      <line x1="60" y1="80" x2="60" y2="110" stroke="#c8a355" stroke-width="2"/>
-      <polygon points="56,110 60,120 64,110" fill="#c8a355" opacity="0.6"/>
-      <!-- Collar -->
-      <path d="M50 72 L60 80 L70 72" fill="none" stroke="#c8a355" stroke-width="2"/>
-      <!-- Left arm -->
-      <g class="guide-arm guide-arm-left">
-        <path d="M42 80 L28 115 L32 118" fill="none" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="31" cy="119" r="4" fill="none" stroke="#c8a355" stroke-width="1.5"/>
-      </g>
-      <!-- Right arm (holding briefcase) -->
-      <g class="guide-arm guide-arm-right">
-        <path d="M78 80 L92 115 L88 118" fill="none" stroke="#c8a355" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="89" cy="119" r="4" fill="none" stroke="#c8a355" stroke-width="1.5"/>
-        <!-- Briefcase -->
-        <rect x="80" y="122" width="20" height="14" rx="2" fill="none" stroke="#c8a355" stroke-width="2"/>
-        <line x1="87" y1="122" x2="87" y2="119" stroke="#c8a355" stroke-width="1.5"/>
-        <line x1="93" y1="122" x2="93" y2="119" stroke="#c8a355" stroke-width="1.5"/>
-        <line x1="87" y1="119" x2="93" y2="119" stroke="#c8a355" stroke-width="1.5"/>
-      </g>
-      <!-- Head -->
-      <circle cx="60" cy="52" r="22" fill="none" stroke="#c8a355" stroke-width="2"/>
-      <!-- Hair -->
-      <path d="M38 48 Q40 28 60 30 Q80 28 82 48" fill="none" stroke="#c8a355" stroke-width="2"/>
-      <!-- Eyes -->
-      <circle cx="52" cy="50" r="2" fill="#c8a355"/>
-      <circle cx="68" cy="50" r="2" fill="#c8a355"/>
-      <!-- Smile -->
-      <path d="M52 60 Q60 67 68 60" fill="none" stroke="#c8a355" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Glasses -->
-      <circle cx="52" cy="50" r="6" fill="none" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
-      <circle cx="68" cy="50" r="6" fill="none" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
-      <line x1="58" y1="50" x2="62" y2="50" stroke="#c8a355" stroke-width="1" opacity="0.5"/>
-    </svg>
-  </div>
-</div>
-
 <!-- ===== MOBILE STICKY CTA ===== -->
-<div class="mobile-cta" id="mobileCta">
-  <a href="#contact">
-    <span>Request Consultation</span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
+<div class="mobile-cta" id="mobileCta"><a href="#contact"><span>Request Consultation</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
 
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// --- Disclaimer ---
-function acceptDisclaimer() {
-  gsap.to('#disclaimer', {
-    opacity: 0, duration: 0.6, ease: 'power2.inOut',
+// ========== PRELOADER ==========
+(function() {
+  var fill = document.getElementById('preloaderFill');
+  var num = document.getElementById('preloaderNum');
+  var preloader = document.getElementById('preloader');
+  var disclaimer = document.getElementById('disclaimer');
+  var accepted = sessionStorage.getItem('disclaimerAccepted') === 'true';
+  var counter = { val: 0 };
+
+  document.body.style.overflow = 'hidden';
+
+  gsap.to(counter, {
+    val: 100, duration: 2, ease: 'power2.inOut',
+    onUpdate: function() {
+      var v = Math.round(counter.val);
+      num.textContent = v;
+      fill.style.width = v + '%';
+    },
     onComplete: function() {
-      document.getElementById('disclaimer').style.display = 'none';
-      startHeroAnimation();
+      gsap.to(preloader, {
+        opacity: 0, duration: 0.5, delay: 0.3,
+        onComplete: function() {
+          preloader.style.display = 'none';
+          document.body.style.overflow = '';
+          if (accepted) {
+            startSite();
+          } else {
+            disclaimer.style.display = 'flex';
+            gsap.from('.disclaimer-inner', { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' });
+          }
+        }
+      });
     }
   });
-  sessionStorage.setItem('disclaimerAccepted', 'true');
-}
-if (sessionStorage.getItem('disclaimerAccepted') === 'true') {
-  document.getElementById('disclaimer').style.display = 'none';
-  window.addEventListener('load', startHeroAnimation);
-}
+})();
 
-// --- Hero entrance ---
-function startHeroAnimation() {
+function acceptDisclaimer() {
+  gsap.to('#disclaimer', {
+    opacity: 0, duration: 0.5, ease: 'power2.inOut',
+    onComplete: function() {
+      document.getElementById('disclaimer').style.display = 'none';
+      sessionStorage.setItem('disclaimerAccepted', 'true');
+      startSite();
+    }
+  });
+}
+document.getElementById('disclaimerBtn').addEventListener('click', acceptDisclaimer);
+
+function startSite() {
+  // Hero entrance
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
   tl.from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.7 })
-    .from('.text-reveal', {
-      y: '110%', duration: 1, stagger: 0.12, ease: 'power4.out'
-    }, '-=0.3')
+    .from('.text-reveal', { y: '110%', duration: 1, stagger: 0.12, ease: 'power4.out' }, '-=0.3')
     .from('.hero-divider span', { width: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
     .from('.hero-desc', { opacity: 0, y: 20, duration: 0.7 }, '-=0.4')
     .from('.hero-actions', { opacity: 0, y: 20, duration: 0.7 }, '-=0.3')
     .from('.hero-stat', { opacity: 0, y: 30, stagger: 0.15, duration: 0.6 }, '-=0.5')
     .from('.hero-scroll-hint', { opacity: 0, duration: 0.6 }, '-=0.3');
 
-  // Count up stats
+  // Count up
   document.querySelectorAll('.stat-num').forEach(function(el) {
     var target = parseInt(el.getAttribute('data-count'));
     gsap.to(el, {
-      innerText: target, duration: 1.5, delay: 1.2, ease: 'power2.out',
-      snap: { innerText: 1 },
+      innerText: target, duration: 1.5, delay: 1.2, ease: 'power2.out', snap: { innerText: 1 },
       onUpdate: function() { el.textContent = Math.round(parseFloat(el.textContent)); }
     });
   });
+
+  // Init scramble on all [data-scramble]
+  initScramble();
 }
 
-// --- Navbar ---
-var lastSt = 0;
+// ========== TEXT SCRAMBLE ==========
+var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+function scrambleText(el) {
+  var original = el.getAttribute('data-original') || el.textContent;
+  el.setAttribute('data-original', original);
+  var length = original.length;
+  var iterations = 0;
+  var interval = setInterval(function() {
+    el.textContent = original.split('').map(function(ch, i) {
+      if (i < iterations) return original[i];
+      if (ch === ' ') return ' ';
+      return CHARS[Math.floor(Math.random() * CHARS.length)];
+    }).join('');
+    iterations += 1 / 2;
+    if (iterations >= length) {
+      clearInterval(interval);
+      el.textContent = original;
+    }
+  }, 30);
+}
+
+function initScramble() {
+  document.querySelectorAll('[data-scramble]').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { scrambleText(el); });
+  });
+}
+
+// ========== SCROLL PROGRESS ==========
 ScrollTrigger.create({
   onUpdate: function(self) {
-    var st = self.scroll();
+    gsap.set('#scrollProgress', { scaleX: self.progress });
+  }
+});
+
+// ========== NAVBAR ==========
+ScrollTrigger.create({
+  onUpdate: function(self) {
     var nav = document.getElementById('navbar');
-    nav.classList.toggle('scrolled', st > 80);
-    if (st > 400) {
+    nav.classList.toggle('scrolled', self.scroll() > 80);
+    if (self.scroll() > 400) {
       nav.classList.toggle('nav-hidden', self.direction === 1);
     } else {
       nav.classList.remove('nav-hidden');
@@ -559,60 +471,31 @@ document.querySelectorAll('.nav-links a').forEach(function(a) {
   });
 });
 
-// --- Mobile CTA show/hide ---
+// ========== MOBILE CTA ==========
 ScrollTrigger.create({
-  trigger: '.hero',
-  start: 'bottom top',
-  onEnterBack: function() { document.getElementById('mobileCta').classList.remove('show'); },
-  onLeave: function() { document.getElementById('mobileCta').classList.add('show'); }
+  trigger: '.hero', start: 'bottom top',
+  onLeave: function() { document.getElementById('mobileCta').classList.add('show'); },
+  onEnterBack: function() { document.getElementById('mobileCta').classList.remove('show'); }
 });
-// Hide when near contact section
 ScrollTrigger.create({
-  trigger: '#contact',
-  start: 'top 80%',
+  trigger: '#contact', start: 'top 80%',
   onEnter: function() { document.getElementById('mobileCta').classList.remove('show'); },
   onLeaveBack: function() { document.getElementById('mobileCta').classList.add('show'); }
 });
 
-// --- Scroll reveals (GSAP) ---
+// ========== GSAP REVEALS ==========
 gsap.utils.toArray('.gsap-reveal').forEach(function(el) {
   gsap.from(el, {
     scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
     opacity: 0, y: 40, duration: 0.9, ease: 'power3.out'
   });
 });
-
-// --- Practice cards stagger ---
 gsap.utils.toArray('.gsap-card').forEach(function(card, i) {
   gsap.from(card, {
     scrollTrigger: { trigger: card, start: 'top 90%' },
     opacity: 0, y: 60, duration: 1, delay: i * 0.15, ease: 'power3.out'
   });
 });
-
-// --- Parallax orbs ---
-gsap.to('.hero-orb-1', {
-  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
-  y: -120, ease: 'none'
-});
-gsap.to('.hero-orb-2', {
-  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
-  y: -80, ease: 'none'
-});
-
-// --- Marquee speed on scroll ---
-gsap.to('.marquee-track', {
-  scrollTrigger: { trigger: '.marquee-strip', start: 'top bottom', end: 'bottom top', scrub: 0.5 },
-  x: -100, ease: 'none'
-});
-
-// --- Big CTA parallax ---
-gsap.from('.big-cta-inner', {
-  scrollTrigger: { trigger: '.big-cta', start: 'top 85%' },
-  opacity: 0, scale: 0.95, duration: 0.8, ease: 'power3.out'
-});
-
-// --- Approach steps stagger ---
 gsap.utils.toArray('.approach-step').forEach(function(step, i) {
   gsap.from(step, {
     scrollTrigger: { trigger: step, start: 'top 90%' },
@@ -620,8 +503,72 @@ gsap.utils.toArray('.approach-step').forEach(function(step, i) {
   });
 });
 
-// --- Magnetic buttons (desktop) ---
+// ========== PARALLAX ==========
+gsap.to('.hero-orb-1', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }, y: -120 });
+gsap.to('.hero-orb-2', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }, y: -80 });
+
+// Marquee scroll-velocity
+var marqueeSpeed = { val: 0 };
+ScrollTrigger.create({
+  onUpdate: function(self) {
+    var v = self.getVelocity();
+    marqueeSpeed.val = v;
+    gsap.to('#marqueeTrack', { x: '+=' + (v * 0.01), duration: 0.5, overwrite: true });
+  }
+});
+
+// Big CTA
+gsap.from('.big-cta-inner', {
+  scrollTrigger: { trigger: '.big-cta', start: 'top 85%' },
+  opacity: 0, scale: 0.95, duration: 0.8, ease: 'power3.out'
+});
+
+// ========== SPLIT TEXT (scroll-triggered heading reveal) ==========
+document.querySelectorAll('.split-text').forEach(function(el) {
+  var text = el.innerHTML;
+  // Wrap each word
+  el.innerHTML = text.replace(/(\S+)/g, '<span class="word-wrap"><span class="word">$1</span></span>');
+  var words = el.querySelectorAll('.word');
+  gsap.from(words, {
+    scrollTrigger: { trigger: el, start: 'top 85%' },
+    y: '100%', opacity: 0, duration: 0.7, stagger: 0.04, ease: 'power3.out'
+  });
+});
+
+// ========== MAGNETIC + CUSTOM CURSOR (desktop) ==========
 if (window.matchMedia('(pointer: fine)').matches) {
+  var cursor = document.getElementById('cursor');
+  var ring = cursor.querySelector('.cursor-ring');
+  var coords = document.getElementById('cursorCoords');
+  var spotlight = document.getElementById('cursorSpotlight');
+  cursor.style.display = 'block';
+  spotlight.style.display = 'block';
+
+  var mx = 0, my = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    gsap.to(cursor, { x: mx, y: my, duration: 0.15, ease: 'power2.out' });
+    gsap.to(spotlight, { x: mx, y: my, duration: 0.6, ease: 'power2.out' });
+    coords.textContent = mx + ', ' + my;
+  });
+
+  // Expand on interactive elements
+  document.querySelectorAll('a, button, .practice-card').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      ring.classList.add('cursor-expand');
+      var txt = el.getAttribute('data-cursor-text');
+      if (txt) {
+        coords.textContent = txt;
+        coords.classList.add('cursor-label');
+      }
+    });
+    el.addEventListener('mouseleave', function() {
+      ring.classList.remove('cursor-expand');
+      coords.classList.remove('cursor-label');
+    });
+  });
+
+  // Magnetic
   document.querySelectorAll('.magnetic').forEach(function(btn) {
     btn.addEventListener('mousemove', function(e) {
       var rect = btn.getBoundingClientRect();
@@ -634,14 +581,12 @@ if (window.matchMedia('(pointer: fine)').matches) {
     });
   });
 
-  // Cursor glow
-  var glow = document.getElementById('cursorGlow');
-  document.addEventListener('mousemove', function(e) {
-    gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.6, ease: 'power2.out' });
-  });
+  // Hide default cursor
+  document.body.style.cursor = 'none';
+  document.querySelectorAll('a, button').forEach(function(el) { el.style.cursor = 'none'; });
 }
 
-// --- Smooth scroll ---
+// ========== SMOOTH SCROLL ==========
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     var target = document.querySelector(this.getAttribute('href'));
@@ -651,107 +596,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     }
   });
 });
-
-// --- Horizontal scroll for practice on mobile ---
-if (window.innerWidth < 769) {
-  var wrap = document.querySelector('.practice-scroll-wrap');
-  if (wrap) wrap.style.overflowX = 'auto';
-}
-
-// --- GUIDE CHARACTER ---
-(function() {
-  var guide = document.getElementById('guide');
-  var speech = document.getElementById('guideSpeech');
-  var textEl = document.getElementById('guideText');
-  var isScrolling = false;
-  var scrollTimer;
-  var currentSection = '';
-
-  var messages = {
-    home: "Welcome to Vidhi Sarthi! Scroll down and I'll show you around.",
-    about: "Here's who we are \u2014 a partnership firm across 5 cities in India.",
-    practice: "These are our core practice areas. We cover corporate, tax, and litigation.",
-    team: "Meet the founding partners \u2014 experienced legal professionals.",
-    contact: "Ready to talk? Fill out the form and we'll get back within 24 hours!",
-    cta: "Need help? Don't hesitate to reach out to us!"
-  };
-
-  function showMessage(key) {
-    if (currentSection === key) return;
-    currentSection = key;
-    speech.classList.remove('show');
-    setTimeout(function() {
-      textEl.textContent = messages[key] || messages.home;
-      speech.classList.add('show');
-    }, 200);
-  }
-
-  function setWalking(isWalk) {
-    if (isWalk) {
-      guide.classList.add('walking');
-      guide.classList.remove('waving');
-    } else {
-      guide.classList.remove('walking');
-    }
-  }
-
-  // Show guide after hero
-  ScrollTrigger.create({
-    trigger: '.marquee-strip',
-    start: 'top 90%',
-    onEnter: function() {
-      guide.classList.add('active');
-      guide.classList.add('waving');
-      showMessage('home');
-      setTimeout(function() { guide.classList.remove('waving'); }, 2000);
-    },
-    onLeaveBack: function() {
-      guide.classList.remove('active');
-      currentSection = '';
-    }
-  });
-
-  // Section triggers
-  var sectionMap = [
-    { trigger: '#about', key: 'about' },
-    { trigger: '#practice', key: 'practice' },
-    { trigger: '.big-cta', key: 'cta' },
-    { trigger: '#team', key: 'team' },
-    { trigger: '#contact', key: 'contact' }
-  ];
-
-  sectionMap.forEach(function(s) {
-    ScrollTrigger.create({
-      trigger: s.trigger,
-      start: 'top 60%',
-      end: 'bottom 40%',
-      onEnter: function() { showMessage(s.key); },
-      onEnterBack: function() { showMessage(s.key); }
-    });
-  });
-
-  // Walk while scrolling
-  window.addEventListener('scroll', function() {
-    if (!isScrolling) {
-      isScrolling = true;
-      setWalking(true);
-    }
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function() {
-      isScrolling = false;
-      setWalking(false);
-    }, 200);
-  }, { passive: true });
-
-  // Hide at footer
-  ScrollTrigger.create({
-    trigger: '.footer',
-    start: 'top 80%',
-    onEnter: function() { guide.classList.remove('active'); },
-    onLeaveBack: function() { guide.classList.add('active'); showMessage('contact'); }
-  });
-})();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 </body>
 </html>
