@@ -1,0 +1,10 @@
+services:
+  vidhisarthi-web:
+    image: nginx:alpine
+    container_name: vidhisarthi-site
+    ports:
+      - "59888:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped

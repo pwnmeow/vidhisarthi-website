@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post | Vidhi Sarthi</title>
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="nav-brand">
+      <img src="../images/logo.png" alt="Vidhi Sarthi">
+      <div class="nav-brand-text">
+        <h1>Vidhi Sarthi</h1>
+        <span>Corporate &bull; Indirect Tax &bull; Litigation</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#practice">Practice Areas</a>
+      <a href="../index.html#team">Team</a>
+      <a href="index.html" class="active">Blog</a>
+      <a href="../index.html#contact" class="nav-cta">Consult</a>
+    </div>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== POST CONTENT ===== -->
+<article class="blog-post-page">
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Blog</a>
+    <div class="post-header" id="postHeader">
+      <div class="post-loading">Loading...</div>
+    </div>
+    <div class="post-body" id="postBody"></div>
+    <div class="post-footer">
+      <p><em>Disclaimer: This content is for informational purposes only and does not constitute legal advice.</em></p>
+      <a href="../index.html#contact" class="btn btn-primary">Request a Consultation &rarr;</a>
+    </div>
+  </div>
+</article>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Vidhi Sarthi</h3>
+        <p>Corporate &bull; Indirect Tax &bull; Litigation</p>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p>
+      <p>This website is for informational purposes only and does not constitute legal advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+function parseFrontmatter(text) {
+  var match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { meta: {}, body: text };
+  var meta = {};
+  match[1].split('\n').forEach(function(line) {
+    var idx = line.indexOf(':');
+    if (idx > -1) {
+      meta[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
+    }
+  });
+  return { meta: meta, body: match[2] };
+}
+
+function formatDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+async function loadPost() {
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get('slug');
+  if (!slug) {
+    document.getElementById('postHeader').innerHTML = '<h1>Post not found</h1>';
+    return;
+  }
+
+  try {
+    var res = await fetch('posts/' + slug + '.md');
+    if (!res.ok) throw new Error('Not found');
+    var text = await res.text();
+    var parsed = parseFrontmatter(text);
+    var m = parsed.meta;
+
+    document.title = (m.title || slug) + ' | Vidhi Sarthi Blog';
+
+    var tags = (m.tags || '').split(',').map(function(t) { return t.trim(); }).filter(Boolean);
+    var tagsHtml = tags.map(function(t) { return '<span class="blog-tag">' + t + '</span>'; }).join('');
+
+    document.getElementById('postHeader').innerHTML =
+      '<div class="post-meta">' +
+        '<span>' + formatDate(m.date || '') + '</span>' +
+        '<span class="post-meta-sep">&bull;</span>' +
+        '<span>By ' + (m.author || 'Vidhi Sarthi') + '</span>' +
+      '</div>' +
+      '<h1>' + (m.title || slug) + '</h1>' +
+      '<div class="post-tags">' + tagsHtml + '</div>';
+
+    document.getElementById('postBody').innerHTML = marked.parse(parsed.body);
+  } catch(e) {
+    document.getElementById('postHeader').innerHTML = '<h1>Post not found</h1><p>The requested article could not be loaded.</p>';
+  }
+}
+
+loadPost();
+</script>
+</body>
+</html>

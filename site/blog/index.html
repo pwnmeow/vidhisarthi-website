@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Vidhi Sarthi</title>
+  <meta name="description" content="Legal insights, updates and analysis from Vidhi Sarthi - Corporate, Indirect Tax & Litigation.">
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="nav-brand">
+      <img src="../images/logo.png" alt="Vidhi Sarthi">
+      <div class="nav-brand-text">
+        <h1>Vidhi Sarthi</h1>
+        <span>Corporate &bull; Indirect Tax &bull; Litigation</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#practice">Practice Areas</a>
+      <a href="../index.html#team">Team</a>
+      <a href="#" class="active">Blog</a>
+      <a href="../index.html#contact" class="nav-cta">Consult</a>
+    </div>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== BLOG HEADER ===== -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="section-label">Insights &amp; Updates</div>
+    <h2 class="blog-hero-title">Legal Blog</h2>
+    <p class="blog-hero-desc">Practical legal insights on corporate law, indirect taxation, and litigation from the Vidhi Sarthi team.</p>
+  </div>
+</section>
+
+<!-- ===== BLOG LISTING ===== -->
+<section class="blog-listing">
+  <div class="container">
+    <div class="blog-filter" id="blogFilter"></div>
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-loading">Loading posts...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Vidhi Sarthi</h3>
+        <p>Corporate &bull; Indirect Tax &bull; Litigation</p>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#practice">Practice Areas</a>
+        <a href="#">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p>
+      <p>This website is for informational purposes only and does not constitute legal advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Markdown parser (tiny, no build step) -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+// Post registry - ADD NEW POSTS HERE (filename without .md)
+var POSTS = [
+  'gst-compliance-checklist-2025',
+  'welcome'
+];
+
+function parseFrontmatter(text) {
+  var match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { meta: {}, body: text };
+  var meta = {};
+  match[1].split('\n').forEach(function(line) {
+    var idx = line.indexOf(':');
+    if (idx > -1) {
+      var key = line.slice(0, idx).trim();
+      var val = line.slice(idx + 1).trim();
+      meta[key] = val;
+    }
+  });
+  return { meta: meta, body: match[2] };
+}
+
+function formatDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+async function loadPosts() {
+  var grid = document.getElementById('blogGrid');
+  var allTags = new Set();
+  var cards = [];
+
+  for (var i = 0; i < POSTS.length; i++) {
+    try {
+      var res = await fetch('posts/' + POSTS[i] + '.md');
+      var text = await res.text();
+      var parsed = parseFrontmatter(text);
+      var m = parsed.meta;
+      var tags = (m.tags || '').split(',').map(function(t) { return t.trim(); }).filter(Boolean);
+      tags.forEach(function(t) { allTags.add(t); });
+
+      cards.push({
+        slug: POSTS[i],
+        title: m.title || POSTS[i],
+        date: m.date || '',
+        author: m.author || '',
+        summary: m.summary || '',
+        tags: tags
+      });
+    } catch(e) {
+      console.error('Failed to load: ' + POSTS[i], e);
+    }
+  }
+
+  // Sort by date descending
+  cards.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+  // Render filter tags
+  var filterHtml = '<button class="tag-btn active" data-tag="all">All</button>';
+  allTags.forEach(function(tag) {
+    filterHtml += '<button class="tag-btn" data-tag="' + tag + '">' + tag + '</button>';
+  });
+  document.getElementById('blogFilter').innerHTML = filterHtml;
+
+  // Render cards
+  grid.innerHTML = '';
+  cards.forEach(function(post) {
+    var tagsHtml = post.tags.map(function(t) {
+      return '<span class="blog-tag">' + t + '</span>';
+    }).join('');
+
+    var card = document.createElement('a');
+    card.href = 'post.html?slug=' + post.slug;
+    card.className = 'blog-card';
+    card.setAttribute('data-tags', post.tags.join(','));
+    card.innerHTML =
+      '<div class="blog-card-top">' +
+        '<div class="blog-card-date">' + formatDate(post.date) + '</div>' +
+        '<div class="blog-card-tags">' + tagsHtml + '</div>' +
+      '</div>' +
+      '<h3>' + post.title + '</h3>' +
+      '<p>' + post.summary + '</p>' +
+      '<div class="blog-card-footer">' +
+        '<span class="blog-card-author">By ' + post.author + '</span>' +
+        '<span class="blog-card-read">Read &rarr;</span>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  // Filter logic
+  document.querySelectorAll('.tag-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tag-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var tag = btn.getAttribute('data-tag');
+      document.querySelectorAll('.blog-card').forEach(function(card) {
+        if (tag === 'all' || card.getAttribute('data-tags').indexOf(tag) > -1) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+loadPosts();
+</script>
+</body>
+</html>
