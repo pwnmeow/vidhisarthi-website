@@ -16,25 +16,22 @@
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar scrolled" id="navbar">
-  <div class="container">
+  <div class="nav-inner">
     <a href="../index.html" class="nav-brand">
-      <img src="../images/logo.png" alt="Vidhi Sarthi">
-      <div class="nav-brand-text">
-        <h1>Vidhi Sarthi</h1>
-        <span>Corporate &bull; Indirect Tax &bull; Litigation</span>
-      </div>
+      <span class="nav-brand-name">Vidhi Sarthi</span>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#practice">Practice Areas</a>
-      <a href="../index.html#team">Team</a>
-      <a href="#" class="active">Blog</a>
-      <a href="../index.html#contact" class="nav-cta">Consult</a>
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#about" class="nav-link">About</a>
+      <a href="../index.html#practice" class="nav-link">Practice Areas</a>
+      <a href="../index.html#team" class="nav-link">Team</a>
+      <a href="#" class="nav-link active">Insights</a>
+      <a href="../index.html#careers" class="nav-link">Careers</a>
+      <a href="../index.html#contact" class="nav-link nav-cta">Consult</a>
     </div>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </div>
+    <button class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open');this.classList.toggle('active')" aria-label="Menu">
+      <span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -61,18 +58,10 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <h3>Vidhi Sarthi</h3>
-        <p>Corporate &bull; Indirect Tax &bull; Litigation</p>
-      </div>
-      <div class="footer-links">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#practice">Practice Areas</a>
-        <a href="#">Blog</a>
-        <a href="../index.html#contact">Contact</a>
-      </div>
+      <div class="footer-brand"><div><h3>Vidhi Sarthi</h3><p>Advocates &amp; Legal Consultants</p></div></div>
+      <nav class="footer-nav"><a href="../index.html">Home</a><a href="../index.html#about">About</a><a href="../index.html#practice">Practice Areas</a><a href="#">Insights</a><a href="../index.html#careers">Careers</a><a href="../index.html#contact">Contact</a></nav>
     </div>
+    <div class="footer-line"></div>
     <div class="footer-bottom">
       <p>&copy; 2025 Vidhi Sarthi. All rights reserved.</p>
       <p>This website is for informational purposes only and does not constitute legal advice.</p>
